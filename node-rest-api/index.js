@@ -4,7 +4,8 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const morgan = require("morgan");
-
+const helmet = require("helmet");
+const userRoute = require("./routes/users");
 dotenv.config();
 mongoose.connect(
   process.env.MONGO_URL,
@@ -13,6 +14,11 @@ mongoose.connect(
     console.log("Connected to MongoDB");
   }
 );
+
+//middleware
+app.use(express.json()); // To recognize the incoming Request Object as a JSON Object.
+app.use(helmet());
+app.use(morgan("common")); // simplifies the process of logger
 
 app.listen(8000, () => {
   console.log("backend server is running");
