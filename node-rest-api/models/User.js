@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema(
     followers: { type: Array, default: [] }, // we are going to keep user ids inside this array
     followings: { type: Array, default: [] },
     isAdmin: { type: Boolean, default: false },
+    desc: { type: String, max: 50 },
+    ciry: { type: String, max: 50 },
+    from: { type: String, max: 50 },
+    relationship: { type: Number, enum: [1, 2, 3] },
   },
 
   { timestamp: true }
