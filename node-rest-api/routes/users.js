@@ -44,7 +44,7 @@ router.delete("/:id", async (req, res) => {
 router.get("/:id", async function (req, res) {
   try {
     const user = await User.findById(req.params.id);
-    const { password, updatedAt, ...other } = user._doc;
+    const { password, updatedAt, ...other } = user._doc; //just ignore password and updatedAt fields
     res.status(200).json(other);
   } catch (err) {
     res.status(500).json(err);
@@ -52,6 +52,11 @@ router.get("/:id", async function (req, res) {
 });
 
 //FOLLOW A USER
+router.put("/:id/follow", async (req, res) => {
+  if (req.body.userId !== req.params.id) {
+  }
+});
+
 //UNFLOLLOW A USER
 
 module.exports = router;
