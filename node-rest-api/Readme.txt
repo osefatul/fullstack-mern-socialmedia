@@ -8,4 +8,7 @@
 
 
 - auth.js: in order to encrypt password so not to be exposed to anyone. we are gonna use another libray named "bcrypt".
-- a key step in password securtiy is salting and hashing: hashing can decipher any password with the same lenght. so in order not to store this passwod in any database we are using salting with hashing. it is an additional step for password security to avoid storing password in a database.
+	* A key step in password securtiy is salting and hashing: hashing can decipher any password with the same lenght. so in order not to store this passwod in any database we are using salting with hashing. it is an additional step for password security to avoid storing password in a database.
+
+- users.js: req.body.userId === req.params.id => this means they are same users. we will use this logic for delete, get and update requests.
+	* For Following request -  We are gonna use req.body.userId !== req.params.id, because we want to follow someone esle not ourselves. 
