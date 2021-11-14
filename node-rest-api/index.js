@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
+const postRoute = require("./routes/posts");
 
 dotenv.config();
 mongoose.connect(
@@ -25,7 +26,7 @@ app.use(morgan("common")); // simplifies the process of logger
 //Routes
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
-
+app.use("/api/posts", postRoute);
 app.listen(8000, () => {
   console.log("backend server is running");
 });
