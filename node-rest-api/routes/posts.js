@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
+const User = require("../models/User");
 
 //craete a post
 router.post("/", async (req, res) => {
@@ -71,5 +72,21 @@ router.get("/:id", async (req, res) => {
 });
 
 //Timeline post
-router.get("/timeline", async (req, res) => {});
+router.get("/timeline/all", async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.body.userId);
+    const userPosts = await Post.find({ userId: currentUser._id }); //find all posts of this currentuser
+
+    //we are using prmise.all because we are using a loop otherwise it is not gonna fetch all of this. if we use "await map" this is not gonna work or fetch anyting.
+    //so, to avoid this issue with mapping, we will use promis.all
+    const friendPosts = await Promise.all(
+      currentUser.followings.map((friendId) => {
+        return Post.find({ userId: friendId });
+      })
+    );
+    res.status(200).json(userPosts.concat(...friendPosts)); // this will return the user's and whoever he is followings posts
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 module.exports = router;
