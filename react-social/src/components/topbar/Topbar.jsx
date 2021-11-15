@@ -6,11 +6,11 @@ function Topbar() {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <span className="logo">wdkSocial</span>
+        <span className="logo">WDKSocial</span>
       </div>
       <div className="topbarCenter">
         <div className="searchbar">
-          <Search />
+          <Search className="searchIcon" />
           <input
             type="text"
             placeholder="Search for anything"
