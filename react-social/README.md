@@ -5,3 +5,4 @@ Lets implement step by step the react side of the app.
 - go to google fonts and add roboto font and then copy and paste the link into the public/index.js file
 - created assets directory for person and posts and stored it in public directory.
 - created pages and components in the src directory.
+- install material-ui
