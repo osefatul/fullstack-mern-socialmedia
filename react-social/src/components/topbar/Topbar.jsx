@@ -15,6 +15,7 @@ function Topbar() {
             type="text"
             placeholder="Search for anything"
             className="searchInput"
+            autoFocus={true}
           />
         </div>
       </div>
