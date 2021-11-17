@@ -2,25 +2,39 @@
   flex:3;
   /* 50px is the topbar height, if we dont do as below the scrolbar will show. also keep the space between the two number in the cal() */
   height: calc(100vh - 50px);
-
   /* this will create a scroll bar vertically on the sidebar side. */
   overflow-y: scroll;
 }
-
-/* Lets design the scrollbar */
+/* --------------------------------------------------------- */
+/* Lets design the scrollbar for chrome and safari */
 ::-webkit-scrollbar{
   width:5px;
 }
+/* This is the entire rod or track or lane where the bar is scrolling on */
 ::-webkit-scrollbar-track{
-background-color:#f1f1f1
+background-color:transparent
 }
+/* Now for the most important part: the scrollbar thumb.the scrollbar thumb is the main part of the scrollbar which is clicked and dragged by the user. It is selected by the ::-webkit-scrollbar-thumb selector. */
 ::-webkit-scrollbar-thumb{
-  background-color:rgb(179,179,179)
-  }
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+}
+/* darker effect once it is hover */
+::-webkit-scrollbar-thumb:hover{
+  background-color: #097a91;
+}
+
+/* Design scrollbar for firefox */
+.sidebar{
+    
+  /* the first color is the thumb and second the track */
+  scrollbar-color: #d6dee1 transparent;
+  scrollbar-width: thin;
   
-
-
-
+}
+  
+/* --------------------------------------------- */
 .sidebarWrapper{
   padding: 20px;
 }
