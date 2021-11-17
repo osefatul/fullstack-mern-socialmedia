@@ -6,7 +6,8 @@
   overflow-y: scroll;
 }
 /* --------------------------------------------------------- */
-/* Lets design the scrollbar for chrome and safari */
+
+/* DESIGN/CUSTOMIZE SCROLLBAR FOR CHROME */
 ::-webkit-scrollbar{
   width:5px;
 }
@@ -22,16 +23,15 @@ background-color:transparent
 }
 /* darker effect once it is hover */
 ::-webkit-scrollbar-thumb:hover{
-  background-color: #097a91;
+  background-color: #3a4548;
 }
 
-/* Design scrollbar for firefox */
+
+/* DESIGNE/CUSTOMIZE SCROLLBAR FOR FIREFOX */
 .sidebar{
-    
   /* the first color is the thumb and second the track */
   scrollbar-color: #d6dee1 transparent;
-  scrollbar-width: thin;
-  
+  scrollbar-width:thin; 
 }
   
 /* --------------------------------------------- */
