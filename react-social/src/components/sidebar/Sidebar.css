@@ -4,7 +4,14 @@
   height: calc(100vh - 50px);
   /* this will create a scroll bar vertically on the sidebar side. */
   overflow-y: scroll;
+
+  /* sticky the sidebar */
+  position: sticky;
+  top: 50px;
+
 }
+
+
 /* --------------------------------------------------------- */
 
 /* DESIGN/CUSTOMIZE SCROLLBAR FOR CHROME */
@@ -33,6 +40,8 @@ background-color:transparent
   scrollbar-color: #d6dee1 transparent;
   scrollbar-width:thin; 
 }
+
+
   
 /* --------------------------------------------- */
 .sidebarWrapper{

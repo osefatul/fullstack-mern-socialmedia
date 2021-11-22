@@ -3,7 +3,7 @@ import "./Rightbar.css";
 function Rightbar() {
   return (
     <div className="rightbar">
-      <div className="rightbarWrapp">
+      <div className="rightbarWrapper">
         <div className="birthdayContainer">
           <img
             src="../../assets/birthdayGift.png"
