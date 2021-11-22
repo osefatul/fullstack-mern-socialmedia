@@ -33,7 +33,7 @@ function Rightbar({ profile }) {
     return (
       <>
         <h4 className="rightbarTitle">User Information</h4>
-        <div className="righbarInfo">
+        <div className="rightbarInfo">
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">City:</span>
             <span className="rightbarInfoValue">Richmond</span>
