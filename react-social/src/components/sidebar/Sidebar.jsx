@@ -11,7 +11,9 @@ import {
 } from "@material-ui/icons";
 import React from "react";
 import "./Sidebar.css";
+import { Users } from "../../data";
 import thor from "../../assets/person/Thor.jpg";
+import Friends from "../friends/Friends";
 
 function Sidebar() {
   return (
@@ -58,54 +60,9 @@ function Sidebar() {
         <button className="sidebarButton">Show More</button>
         <hr className="sidebarHr" />
         <ul className="sidebarFriendList">
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
-          <li className="sidebarFriend">
-            <img src={thor} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">Thor</span>
-          </li>
+          {Users.map((user) => (
+            <Friends key={user.id} user={user} />
+          ))}
         </ul>
       </div>
     </div>
