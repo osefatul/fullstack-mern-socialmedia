@@ -32,7 +32,7 @@ function Profile() {
           </div>
           <div className="profilRightBottom">
             <Feed />
-            <Rightbar />
+            <Rightbar Profile />
           </div>
         </div>
       </div>
