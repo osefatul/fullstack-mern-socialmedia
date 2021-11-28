@@ -16,3 +16,13 @@ Lets implement step by step the react side of the app.
 - The reason is that in the profile page we will only show the passed props in the righbar components on the rightbar.
 - On Home page the more general/common righbar component will be shown.
 - Two new components have been defined- HomeRightbar and ProfileRightbar.
+
+
+### Switch is removed from the react-router-dom v6:
+- just follow go through this page you will understand in the details [stackoverflow](https://stackoverflow.com/questions/63124161/attempted-import-error-switch-is-not-exported-from-react-router-dom)
+
+### Using .env file
+- We used dummy data where it was redirecting the js to the assets/peron or assets/post images.
+- We will use .env file where we will save the the link for the files or images and it will be constant if we want to use it in every other javascript file.
+- In the env file the name always must be started with REACT_APP otherwise it won't work.
+- copy and paste the name into the js files where we want to use the path. such as in posts, online, friends.
