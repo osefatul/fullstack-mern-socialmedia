@@ -22,7 +22,9 @@ Lets implement step by step the react side of the app.
 - just follow go through this page you will understand in the details [stackoverflow](https://stackoverflow.com/questions/63124161/attempted-import-error-switch-is-not-exported-from-react-router-dom)
 
 ### Using .env file
-- We used dummy data where it was redirecting the js to the assets/peron or assets/post images.
+- After Router is introduced for routing or switching around the pages we will develop another way where we can still use the files that are in the src directory in the different routes.
+- We used dummy data where it was redirecting the to render the imnages in the assets/peron or assets/post directory, whereas the assets folder is existed in the main page.
 - We will use .env file where we will save the the link for the files or images and it will be constant if we want to use it in every other javascript file.
-- In the env file the name always must be started with REACT_APP otherwise it won't work.
+- In the env file the name always must be started with REACT_APP otherwise it won't work.  REACT_APP_PUBLIC_FOLDER = http://localhost:3000/assets/
+- It shows that the assets file are in the src folder. src folder is the main or home when rendering it using router.
 - copy and paste the name into the js files where we want to use the path. such as in posts, online, friends.
