@@ -1,14 +1,20 @@
 import React from "react";
 import "./Share.css";
-import blackWidow from "../../assets/person/blackWidow.jpg";
+
 import { EmojiEmotions, Label, PermMedia, Room } from "@material-ui/icons";
 
 function Share() {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
   return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img src={blackWidow} alt="" className="shareProfileImg" />
+          <img
+            src={`${PF}person/blackWidow.jpg`}
+            alt=""
+            className="shareProfileImg"
+          />
           <input
             type="text"
             placeholder="What is in your mind Omar? "

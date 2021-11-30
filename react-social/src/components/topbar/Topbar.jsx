@@ -1,12 +1,16 @@
 import { Chat, Notifications, Person, Search } from "@material-ui/icons";
 import React from "react";
 import "./Topbar.css";
-import blackwidow from "../../assets/person/blackWidow.jpg";
+import { Link } from "react-router-dom";
 function Topbar() {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <span className="logo">WDKSocial</span>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">WDKSocial</span>
+        </Link>
       </div>
       <div className="topbarCenter">
         <div className="searchbar">
@@ -38,7 +42,7 @@ function Topbar() {
             <span className="topbarIconBadge">3</span>
           </div>
         </div>
-        <img src={blackwidow} alt="" className="topbarImg" />
+        <img src={`${PF}person/blackWidow.jpg`} alt="" className="topbarImg" />
       </div>
     </div>
   );
