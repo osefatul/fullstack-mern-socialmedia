@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Post.css";
-import blackWidow from "../../assets/person/blackWidow.jpg";
+
 import { MoreVert } from "@material-ui/icons";
 import { Users } from "../../data";
 function Post({ post }) {
@@ -40,13 +40,13 @@ function Post({ post }) {
         <div className="postBottom">
           <div className="postBottomLeft">
             <img
-              src="../../assets/like.png"
+              src={`${PF}like.png`}
               alt=""
               className="likeIcon"
               onClick={likeHandler}
             />
             <img
-              src="../../assets/heart.png"
+              src={`${PF}heart.png`}
               alt=""
               className="likeIcon"
               onClick={likeHandler}

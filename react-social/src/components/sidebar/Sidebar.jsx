@@ -12,7 +12,7 @@ import {
 import React from "react";
 import "./Sidebar.css";
 import { Users } from "../../data";
-import thor from "../../assets/person/Thor.jpg";
+import thor from "../../assets/person/thor.jpg";
 import Friends from "../friends/Friends";
 
 function Sidebar() {

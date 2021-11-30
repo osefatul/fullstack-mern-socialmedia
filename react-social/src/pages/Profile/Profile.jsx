@@ -6,6 +6,8 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 
 function Profile() {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
   return (
     <div>
       <Topbar />
@@ -15,12 +17,12 @@ function Profile() {
           <div className="profileRightTop">
             <div className="profileCover">
               <img
-                src="../../assets/post/infinityWar.webp"
+                src={`${PF}post/infinityWar.webp`}
                 alt=""
                 className="profileCoverImg"
               />
               <img
-                src="../../assets/person/blackWidow.jpg"
+                src={`${PF}person/blackWidow.jpg`}
                 alt=""
                 className="profileUserImg"
               />

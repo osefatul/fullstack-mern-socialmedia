@@ -5,19 +5,17 @@ import { Users } from "../../data";
 function Rightbar({ profile }) {
   //Component for Home page
   const HomeRightbar = () => {
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
     return (
       <>
         <div className="birthdayContainer">
-          <img
-            src="../../assets/birthdayGift.png"
-            alt=""
-            className="birthdayImg"
-          />
+          <img src={`${PF}birthdayGift.png`} alt="" className="birthdayImg" />
           <span className="birthdayText">
             <b>Thor</b> and <b>2 other friends</b> have a birthday.
           </span>
         </div>
-        <img src="../../assets/ad.jpg" alt="" className="rightbarAd" />
+        <img src={`${PF}ad.jpg`} alt="" className="rightbarAd" />
         <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
           {Users.map((user) => (
@@ -30,6 +28,8 @@ function Rightbar({ profile }) {
 
   //Component for profile page
   const ProfileRightbar = () => {
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
     return (
       <>
         <h4 className="rightbarTitle">User Information</h4>
@@ -51,7 +51,7 @@ function Rightbar({ profile }) {
         <div className="rightbarFollowings">
           <div className="rightbarFollowing">
             <img
-              src="../../assets/person/blackPanther.jpg"
+              src={`${PF}person/blackPanther.jpg`}
               alt=""
               className="rightbarFollowingimg"
             />
@@ -59,7 +59,7 @@ function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="../../assets/person/captian.png"
+              src={`${PF}person/captian.png`}
               alt=""
               className="rightbarFollowingimg"
             />
@@ -67,7 +67,7 @@ function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="../../assets/person/deadpool.jpg"
+              src={`${PF}person/deadpool.jpg`}
               alt=""
               className="rightbarFollowingimg"
             />
@@ -75,7 +75,7 @@ function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="../../assets/person/DoctorStrange.jpg"
+              src={`${PF}person/DoctorStrange.jpg`}
               alt=""
               className="rightbarFollowingimg"
             />
@@ -83,7 +83,7 @@ function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="../../assets/person/hulk.jpg"
+              src={`${PF}person/hulk.jpg`}
               alt=""
               className="rightbarFollowingimg"
             />
@@ -91,7 +91,7 @@ function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="../../assets/person/iron man.webp"
+              src={`${PF}person/iron man.webp`}
               alt=""
               className="rightbarFollowingimg"
             />
@@ -99,7 +99,7 @@ function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="../../assets/person/thanos.jpg"
+              src={`${PF}person/thanos.jpg`}
               alt=""
               className="rightbarFollowingimg"
             />
