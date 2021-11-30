@@ -27,5 +27,15 @@ Lets implement step by step the react side of the app.
 - We will use .env file where we will save the the path for public folder files or images and it will be constant if we want to use it in every other javascript file.
 - In the env file the name always must be started with REACT_APP otherwise it won't work.  REACT_APP_PUBLIC_FOLDER = http://localhost:3000/assets/
 - It assigns the assets folder to the public folder.
-- copy and paste the name into the js files where we want to use the path. such as in posts, online, friends.
-- Thats how we use files in the public folder using router and env
+- copy and paste the name into the js files where we want to use the path. such as in posts, online, friends etc.
+- Thats how we use files in the public folder using router and env.
+
+### Fetching Data from the MongoDB
+- Add proxy in to the package.json to fecth data form the API. remember to use the port we have used it for the backend server.
+
+		"proxy": "http://localhost:8000/api" 
+
+- "npm install axios" for fecthing data.
+- Create users and posts using postman.
+
+
