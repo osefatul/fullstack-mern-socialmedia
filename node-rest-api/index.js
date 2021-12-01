@@ -18,6 +18,17 @@ mongoose.connect(
   }
 );
 
+//This code snippet, however, would enable CORS for all resources on your server.
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
+});
+
 //middleware
 app.use(express.json()); // To recognize the incoming Request Object as a JSON Object.
 app.use(helmet());

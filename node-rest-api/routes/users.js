@@ -42,7 +42,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//GET A USER
+//GET A USER: whenever we use a get - it is always recommended to use params instead of body
 router.get("/:id", async function (req, res) {
   try {
     const user = await User.findById(req.params.id);

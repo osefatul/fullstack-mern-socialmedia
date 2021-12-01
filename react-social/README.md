@@ -38,4 +38,9 @@ Lets implement step by step the react side of the app.
 - "npm install axios" for fecthing data.
 - Create users and posts using postman.
 
+##### If you get an error for Proxy in package.json not affecting fetch request.
+- First enable CORs 
+- Delete node-modules and pakage-lock.json
+- For more details just visit this [stackoverflow](https://stackoverflow.com/questions/48291950/proxy-not-working-for-react-and-node)
+
 
