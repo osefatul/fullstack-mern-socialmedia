@@ -27,6 +27,8 @@ app.use(morgan("common")); // simplifies the process of logger
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
+
+// commencing server
 app.listen(8000, () => {
   console.log("backend server is running");
 });
