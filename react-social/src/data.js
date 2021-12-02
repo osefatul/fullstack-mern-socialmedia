@@ -31,7 +31,7 @@ export const Users = [
   },
   {
     id: 7,
-    profilePicture: "person/iron man.webp",
+    profilePicture: "person/ironMan.webp",
     username: "Iron Man",
   },
   {

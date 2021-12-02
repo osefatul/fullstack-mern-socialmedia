@@ -16,12 +16,12 @@ function Feed() {
   }, []);
   return (
     <div className="feed">
-      {/* <div className="feedWrapper">
+      <div className="feedWrapper">
         <Share />
         {Posts.map((post) => (
           <Post key={post.id} post={post} />
         ))}
-      </div> */}
+      </div>
     </div>
   );
 }
