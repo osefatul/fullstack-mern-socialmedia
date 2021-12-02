@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Post.css";
-
+import { format } from "timeago.js";
 import { MoreVert } from "@material-ui/icons";
 import axios from "axios";
+import { Link } from "react-router-dom";
 //import { Users } from "../../data";
 function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
@@ -22,25 +23,27 @@ function Post({ post }) {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [post.userId]);
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img
-              src={
-                // PF + Users.filter((u) => u.id === post.userId)[0].profilePicture
-                user.profilePicture || PF + "/person/noAvatar.webp"
-              }
-              alt=""
-              className="postProfileImag"
-            />
+            <Link to={`profile/${user.username}`}>
+              <img
+                src={
+                  // PF + Users.filter((u) => u.id === post.userId)[0].profilePicture
+                  user.profilePicture || PF + "/person/noAvatar.webp"
+                }
+                alt=""
+                className="postProfileImag"
+              />
+            </Link>
             <span className="postUsername">
               {/* {Users.filter((u) => u.id === post.userId)[0].username} */}
               {user.username}
             </span>
-            <span className="postDate">{post.date}</span>
+            <span className="postDate">{format(post.createdAt)}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />

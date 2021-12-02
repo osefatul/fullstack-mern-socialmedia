@@ -46,3 +46,8 @@ Lets implement step by step the react side of the app.
 - First enable CORs
 - Delete node-modules and pakage-lock.json
 - For more details just visit this [stackoverflow](https://stackoverflow.com/questions/48291950/proxy-not-working-for-react-and-node)
+
+#### Using [timeago.js](https://www.javascripting.com/view/timeago-js) Library.
+
+- npm install timeago
+- This will show us when the post was initialy created.
