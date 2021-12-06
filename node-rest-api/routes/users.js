@@ -42,10 +42,15 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//GET A USER: whenever we use a get - it is always recommended to use params instead of body
-router.get("/:id", async function (req, res) {
+//GET A USER: whenever we use a get - it is always recommended to use req.params instead of req.body
+//We are using query, to get user by the id or username
+router.get("/", async function (req, res) {
+  const userId = req.query.userId;
+  const username = req.query.username;
   try {
-    const user = await User.findById(req.params.id);
+    const user = userId
+      ? await User.findById(req.params.id)
+      : await User.findOne({ username: username });
     const { password, updatedAt, ...other } = user._doc; //just ignore password and updatedAt fields
     res.status(200).json(other);
   } catch (err) {
