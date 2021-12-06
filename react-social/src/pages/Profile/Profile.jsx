@@ -29,12 +29,10 @@ function Profile() {
             <div className="profileCover">
               <img
                 src={user.coverPicture || `${PF}/noCover.jpg`}
-                alt=""
                 className="profileCoverImg"
               />
               <img
                 src={user.profilePicture || PF + "/noAvatar.webp"}
-                alt=""
                 className="profileUserImg"
               />
             </div>
