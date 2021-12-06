@@ -17,7 +17,7 @@ function Post({ post }) {
   };
 
   const fetchUser = async () => {
-    const res = await axios.get(`/users/${post.userId}`);
+    const res = await axios.get(`/users?userId=${post.userId}`);
     setUser(res.data);
   };
 
@@ -33,7 +33,7 @@ function Post({ post }) {
               <img
                 src={
                   // PF + Users.filter((u) => u.id === post.userId)[0].profilePicture
-                  user.profilePicture || PF + "/person/noAvatar.webp"
+                  user.profilePicture || PF + "/noAvatar.webp"
                 }
                 alt=""
                 className="postProfileImag"

@@ -51,3 +51,10 @@ Lets implement step by step the react side of the app.
 
 - npm install timeago
 - This will show us when the post was initialy created.
+
+#### useParams
+
+- We used useParams in the profie page where the profile will be shown based on the useParams query.
+
+- In the App.js the path for Profile route is defined as path="/profile/:username" whcih means in the profile page the params is "username".
+- So when using useParams it will render an object of username based on the user profile.

@@ -49,7 +49,7 @@ router.get("/", async function (req, res) {
   const username = req.query.username;
   try {
     const user = userId
-      ? await User.findById(req.params.id)
+      ? await User.findById(userId)
       : await User.findOne({ username: username });
     const { password, updatedAt, ...other } = user._doc; //just ignore password and updatedAt fields
     res.status(200).json(other);
