@@ -34,7 +34,7 @@ export const userSlice = createSlice({
 export const { login, logout, credentialsFetched, loginError } =
   userSlice.actions;
 
-// The function below is called a selector and allows us to select a value from the state or send/export the state value
+// The function below is called a selector and allows us to select a value from the state to send/export the state value
 export const selectUser = (state) => state.user.user;
 export const selectError = (state) => state.user.error;
 export const selectIsFetching = (state) => state.user.isFetching;

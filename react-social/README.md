@@ -58,3 +58,5 @@ Lets implement step by step the react side of the app.
 
 - In the App.js the path for Profile route is defined as path="/profile/:username" whcih means in the profile page the params is "username".
 - So when using useParams it will render an object of username based on the user profile.
+
+-

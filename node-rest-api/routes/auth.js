@@ -29,11 +29,17 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     !user && res.status(404).json("User not found"); //if username is not valid
 
-    const valiPassword = await bcrypt.compare(req.body.password, user.password);
-    !valiPassword && res.status(404).json("Wrong password"); //if password is not valid
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    !validPassword && res.status(404).json("Wrong password"); //if password is not valid
+
+    //if we want to send everything except password:
+    const { password, ...others } = user._doc;
 
     //if both are valid
-    res.status(200).json(user);
+    res.status(200).json(others);
   } catch (err) {
     res.status(500).json(err);
   }

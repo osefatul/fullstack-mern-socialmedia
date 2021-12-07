@@ -69,10 +69,17 @@
   color:#1775ee;
 }
 
+.loginRegisterLink{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .loginRegisterButton{
   height: 60px;
   width:60%;
-  align-self: center;
   border-radius: 10px;
   border: none;
   background-color: tomato;

@@ -36,7 +36,7 @@ app.use(morgan("common")); // simplifies the process of logger
 
 //Routes
 app.use("/api/users", userRoute);
-app.use("/api/auth", authRoute);
+app.use("/api/auths", authRoute);
 app.use("/api/posts", postRoute);
 
 // commencing server
