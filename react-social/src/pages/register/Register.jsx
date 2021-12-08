@@ -35,7 +35,7 @@ function Register() {
 
         //we can use useHistory as well to go to another link once data is there which means once data is submitted
 
-        //res.data && window.location.replace("/login");
+        res.data && window.location.replace("/login");
         setSuccessfullySubmitted(true);
         console.log(res.data);
       } else {
