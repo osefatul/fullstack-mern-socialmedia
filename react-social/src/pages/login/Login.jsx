@@ -12,6 +12,7 @@ import {
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { CircularProgress } from "@material-ui/core";
 
 function Login() {
   const emailRef = useRef();
@@ -20,6 +21,7 @@ function Login() {
   const user = useSelector(selectUser);
   const error = useSelector(selectError);
   const isFetching = useSelector(selectIsFetching);
+
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -83,7 +85,11 @@ function Login() {
             />
 
             <button className="loginButton" type="submit" disabled={isFetching}>
-              Login
+              {isFetching ? (
+                <CircularProgress color="white" size="15px" />
+              ) : (
+                "Login"
+              )}
             </button>
             {error && (
               <span style={{ color: "red", textAlign: "center" }}>

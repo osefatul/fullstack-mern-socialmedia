@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { loginError, selectError } from "../../features/userSlice";
+import { CircularProgress } from "@material-ui/core";
+
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +14,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const fetchError = useSelector(selectError);
+  const [successfullySubmitted, setSuccessfullySubmitted] = useState(false);
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -20,6 +23,7 @@ function Register() {
     setUsername("");
     setPassword("");
     setError(false);
+    setSuccessfullySubmitted(false);
 
     try {
       if (confirmPassword === password) {
@@ -31,8 +35,9 @@ function Register() {
 
         //we can use useHistory as well to go to another link once data is there which means once data is submitted
 
-        res.data && window.location.replace("/login");
-        //console.log(res.data);
+        //res.data && window.location.replace("/login");
+        setSuccessfullySubmitted(true);
+        console.log(res.data);
       } else {
         //we are using an error from the redux. this will turn error variable true we use it only if the passwords dont match
         dispatch(loginError());
@@ -78,7 +83,13 @@ function Register() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               minLength="6"
             />
-            <button className="registerButton">Sign Up</button>
+            <button type="submit" className="registerButton">
+              {successfullySubmitted ? (
+                <CircularProgress size="15px" />
+              ) : (
+                "Sign up"
+              )}
+            </button>
             {fetchError && (
               <span style={{ color: "red", textAlign: "center" }}>
                 Passwords don't match
