@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 function Topbar() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
   const user = useSelector(selectUser);
 
   return (
@@ -47,15 +46,17 @@ function Topbar() {
             <span className="topbarIconBadge">3</span>
           </div>
         </div>
-        <img
-          src={`${
-            user.profilePicture
-              ? PF + user.profilePicture
-              : PF + "noAvatar.webp"
-          }`}
-          alt=""
-          className="topbarImg"
-        />
+        <Link to={`profile/${user.username}`}>
+          <img
+            src={`${
+              user.profilePicture
+                ? PF + user.profilePicture
+                : PF + "noAvatar.webp"
+            }`}
+            alt=""
+            className="topbarImg"
+          />
+        </Link>
       </div>
     </div>
   );
