@@ -97,7 +97,7 @@ function Rightbar({ user }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src={`${PF}person/iron man.webp`}
+              src={`${PF}person/ironMan.webp`}
               alt=""
               className="rightbarFollowingimg"
             />

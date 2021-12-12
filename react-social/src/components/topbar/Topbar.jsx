@@ -2,8 +2,13 @@ import { Chat, Notifications, Person, Search } from "@material-ui/icons";
 import React from "react";
 import "./Topbar.css";
 import { Link } from "react-router-dom";
+import { selectUser } from "../../features/userSlice";
+import { useSelector } from "react-redux";
+
 function Topbar() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const user = useSelector(selectUser);
 
   return (
     <div className="topbarContainer">
@@ -42,7 +47,15 @@ function Topbar() {
             <span className="topbarIconBadge">3</span>
           </div>
         </div>
-        <img src={`${PF}person/blackWidow.jpg`} alt="" className="topbarImg" />
+        <img
+          src={`${
+            user.profilePicture
+              ? PF + user.profilePicture
+              : PF + "noAvatar.webp"
+          }`}
+          alt=""
+          className="topbarImg"
+        />
       </div>
     </div>
   );
