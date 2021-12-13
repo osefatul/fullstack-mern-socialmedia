@@ -4,14 +4,28 @@ import { format } from "timeago.js";
 import { MoreVert } from "@material-ui/icons";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { selectUser } from "../../features/userSlice";
+import { useSelector } from "react-redux";
+
 //import { Users } from "../../data";
 function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user, setUser] = useState({});
+  const currentUser = useSelector(selectUser);
 
+  //how can we know if a user has already liked a post or not? So, when a user like a post - check if the user id is existed in the post.likes array. if yes then setIsLiked will be true..
+  useEffect(() => {
+    setIsLiked(post.likes.includes(currentUser._id));
+  }, [currentUser._id, post.likes]);
   const likeHandler = () => {
+    //like and dislike a post
+    try {
+      axios.put(`/posts/` + post._id + `/like`, { userId: currentUser._id });
+    } catch (e) {
+      console.log(e);
+    }
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
