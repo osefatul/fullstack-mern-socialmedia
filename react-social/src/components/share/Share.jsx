@@ -2,23 +2,33 @@ import React from "react";
 import "./Share.css";
 
 import { EmojiEmotions, Label, PermMedia, Room } from "@material-ui/icons";
+import { selectUser } from "../../features/userSlice";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Share() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const user = useSelector(selectUser);
 
   return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img
-            src={`${PF}person/blackWidow.jpg`}
-            alt=""
-            className="shareProfileImg"
-          />
+          <Link to={`profile/${user.username}`}>
+            <img
+              className="shareProfileImg"
+              src={`${
+                user.profilePicture
+                  ? PF + user.profilePicture
+                  : PF + "noAvatar.webp"
+              }`}
+              alt=""
+            />
+          </Link>
           <input
-            type="text"
-            placeholder="What is in your mind Omar? "
             className="shareInput"
+            type="text"
+            placeholder={`What is in your mind ${user.username}?`}
           />
         </div>
         <hr className="shareHr" />
