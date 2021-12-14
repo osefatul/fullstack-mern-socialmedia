@@ -34,6 +34,29 @@ app.use(express.json()); // To recognize the incoming Request Object as a JSON O
 app.use(helmet());
 app.use(morgan("common")); // simplifies the process of logger
 
+//################# Uploading file using Multer ###########################
+
+//destination for uploaded file storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
+});
+
+//uploading a single file as post request.
+const upload = multer(storage);
+app.post("api/upload", upload.single("file"), (req, res) => {
+  try {
+    res.status(200).json("file uploaded successfully");
+  } catch (err) {
+    console.log(err);
+  }
+});
+//#################################################################
+
 //Routes
 app.use("/api/users", userRoute);
 app.use("/api/auths", authRoute);

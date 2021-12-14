@@ -63,3 +63,10 @@ Lets implement step by step the react side of the app.
 
 - user, isfetching, errors are the initial staes we used.
 - login, logout, credentialsFetched, LoginError are the reducers to be dispatched.
+
+#### Uploading files
+
+- It is not a good idea to use rest API for uploading file.
+- But for educational purpose we have used multer library for uploading file in the index.js api side.
+- multer is using a post request for uploading a file in to a a specific path.
+- It needs a disk storage for uploadded files.
