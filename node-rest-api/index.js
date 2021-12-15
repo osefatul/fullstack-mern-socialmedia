@@ -42,15 +42,15 @@ const storage = multer.diskStorage({
     cb(null, "public/images");
   },
   filename: (req, file, cb) => {
-    cb(null, req.body.name);
+    cb(null, file.originalname);
   },
 });
 
 //uploading a single file as post request.
-const upload = multer(storage);
-app.post("api/upload", upload.single("file"), (req, res) => {
+const upload = multer({ storage });
+app.post("/api/upload", upload.single("file"), (req, res) => {
   try {
-    res.status(200).json("file uploaded successfully");
+    return res.status(200).json("file uploaded successfully");
   } catch (err) {
     console.log(err);
   }
