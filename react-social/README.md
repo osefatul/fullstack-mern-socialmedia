@@ -70,3 +70,11 @@ Lets implement step by step the react side of the app.
 - But for educational purpose we have used multer library for uploading file in the index.js api side.
 - multer is using a post request for uploading a file in to a a specific path.
 - It needs a disk storage for uploadded files.
+- We also changed the env file path. We copied all those files that were in the client/public directory were moved to the api/public/images.
+- Changed the env file path from:
+  REACT_APP_PUBLIC_FOLDER = http://localhost:3000/assets/
+  To:
+  REACT_APP_PUBLIC_FOLDER = http://localhost:8000/images
+
+- Added path for images in to the api/index file.
+- In the Share component when a file is chosen in the input by a user, Then we send that file using a formData ( provides a way to easily construct a set of key/value pairs representing form fields and their values, which can then be easily sent using the XMLHttpRequest.)

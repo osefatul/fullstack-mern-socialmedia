@@ -23,13 +23,23 @@ function Share() {
       desc: desc.current.value,
     };
 
+    //if a file is selected by user then it has to be uploaded and the name of the file should be changed based on the date
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName); //indicate the file itself.
+      data.append("file", file); //indicate the file name.
+      newPost.img = fileName; //add image into the new post.
+
+      try {
+        await axios.post("/upload", data);
+      } catch (err) {}
+    }
     try {
       await axios.post("/posts", newPost);
-    } catch (e) {
-      console.log(e);
-    }
+      window.location.reload();
+    } catch (err) {}
   };
-
   return (
     <div className="share">
       <div className="shareWrapper">

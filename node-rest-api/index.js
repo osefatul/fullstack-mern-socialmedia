@@ -8,6 +8,7 @@ const helmet = require("helmet");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
+const path = require("path");
 
 dotenv.config();
 mongoose.connect(
@@ -29,7 +30,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-//middleware
+//middlewares
+app.use("/images", express.static(path.join(__dirname, "public/images"))); //whenever someone request to http://localhost:8000/images.. then you should direct them to the api/public/images directory.
 app.use(express.json()); // To recognize the incoming Request Object as a JSON Object.
 app.use(helmet());
 app.use(morgan("common")); // simplifies the process of logger
@@ -42,19 +44,21 @@ const storage = multer.diskStorage({
     cb(null, "public/images");
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    //cb(null, file.originalname); use this when there is no file name has been made while sending file data in to form as we did in the share component
+    cb(null, req.body.name);
   },
 });
 
 //uploading a single file as post request.
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
   try {
-    return res.status(200).json("file uploaded successfully");
-  } catch (err) {
-    console.log(err);
+    return res.status(200).json("File uploded successfully");
+  } catch (error) {
+    console.error(error);
   }
 });
+
 //#################################################################
 
 //Routes
