@@ -47,7 +47,9 @@ function Post({ post }) {
               <img
                 src={
                   // PF + Users.filter((u) => u.id === post.userId)[0].profilePicture
-                  user.profilePicture || PF + "noAvatar.webp"
+                  user.profilePicture
+                    ? PF + user.profilePicture
+                    : PF + "noAvatar.webp"
                 }
                 alt=""
                 className="postProfileImag"

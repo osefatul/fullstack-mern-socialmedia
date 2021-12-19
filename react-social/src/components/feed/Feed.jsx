@@ -20,7 +20,7 @@ function Feed({ username }) {
         return new Date(p2.createdAt) - new Date(p1.createdAt); //this will compare posts based on date. the one that are posted recently will be rendered first
       })
     );
-    console.log(res);
+    //console.log(res);
   };
   useEffect(() => {
     fetchPosts();

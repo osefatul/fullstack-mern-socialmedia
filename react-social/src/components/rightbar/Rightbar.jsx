@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Rightbar.css";
 import Online from "../online/Online";
 import { Users } from "../../data";
+import axios from "axios";
 function Rightbar({ user }) {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [friends, setFriends] = useState([]);
+
+  //Function for fetching friends data
+  useEffect(() => {
+    const getFriends = async () => {
+      try {
+        const friendList = await axios.get("/users/friends/" + user._id);
+        setFriends(friendList.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getFriends();
+  }, [user]);
+
   //Component for Home page
   const HomeRightbar = () => {
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
     return (
       <>
         <div className="birthdayContainer">
@@ -55,62 +70,20 @@ function Rightbar({ user }) {
         </div>
         <h4 className="rightbarTitle">User Friends</h4>
         <div className="rightbarFollowings">
-          <div className="rightbarFollowing">
-            <img
-              src={`${PF}person/blackPanther.jpg`}
-              alt=""
-              className="rightbarFollowingimg"
-            />
-            <span className="rightbarFollowingName">Black Panther</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img
-              src={`${PF}person/captian.png`}
-              alt=""
-              className="rightbarFollowingimg"
-            />
-            <span className="rightbarFollowingName">Captian Steve</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img
-              src={`${PF}person/deadpool.jpg`}
-              alt=""
-              className="rightbarFollowingimg"
-            />
-            <span className="rightbarFollowingName">Dead Pool</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img
-              src={`${PF}person/DoctorStrange.jpg`}
-              alt=""
-              className="rightbarFollowingimg"
-            />
-            <span className="rightbarFollowingName">DoctorStrange</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img
-              src={`${PF}person/hulk.jpg`}
-              alt=""
-              className="rightbarFollowingimg"
-            />
-            <span className="rightbarFollowingName">The Hulk</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img
-              src={`${PF}person/ironMan.webp`}
-              alt=""
-              className="rightbarFollowingimg"
-            />
-            <span className="rightbarFollowingName">The Iron Man</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img
-              src={`${PF}person/thanos.jpg`}
-              alt=""
-              className="rightbarFollowingimg"
-            />
-            <span className="rightbarFollowingName">Thanos</span>
-          </div>
+          {friends.map((friend) => (
+            <div className="rightbarFollowing">
+              <img
+                className="rightbarFollowingimg"
+                src={
+                  friend.profilePicture
+                    ? PF + friend.profilePicture
+                    : PF + "/noAvatar.webp"
+                }
+                alt=""
+              />
+              <span className="rightbarFollowingName">{friend.username}</span>
+            </div>
+          ))}
         </div>
       </>
     );

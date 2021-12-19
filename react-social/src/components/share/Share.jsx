@@ -47,11 +47,11 @@ function Share() {
           <Link to={`profile/${user.username}`}>
             <img
               className="shareProfileImg"
-              src={`${
+              src={
                 user.profilePicture
                   ? PF + user.profilePicture
-                  : PF + "noAvatar.webp"
-              }`}
+                  : PF + "/noAvatar.webp"
+              }
               alt=""
             />
           </Link>
