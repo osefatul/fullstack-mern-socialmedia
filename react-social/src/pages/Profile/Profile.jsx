@@ -28,11 +28,19 @@ function Profile() {
           <div className="profileRightTop">
             <div className="profileCover">
               <img
-                src={user.coverPicture || `${PF}/noCover.jpg`}
+                src={
+                  user.coverPicture
+                    ? PF + user.coverPicture
+                    : `${PF}/noCover.jpg`
+                }
                 className="profileCoverImg"
               />
               <img
-                src={user.profilePicture || PF + "/noAvatar.webp"}
+                src={
+                  user.profilePicture
+                    ? PF + user.profilePicture
+                    : PF + "/noAvatar.webp"
+                }
                 className="profileUserImg"
               />
             </div>

@@ -15,12 +15,16 @@ function Feed({ username }) {
     const res = username
       ? await axios.get("/posts/profile/" + username)
       : await axios.get(`/posts/timeline/` + user._id);
-    setPosts(res.data);
+    setPosts(
+      res.data.sort((p1, p2) => {
+        return new Date(p2.createdAt) - new Date(p1.createdAt); //this will compare posts based on date. the one that are posted recently will be rendered first
+      })
+    );
     console.log(res);
   };
   useEffect(() => {
     fetchPosts();
-    console.log(username);
+    //console.log(username);
   }, [username, user._id]);
   return (
     <div className="feed">
