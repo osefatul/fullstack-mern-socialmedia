@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import "./Share.css";
-
 import { EmojiEmotions, Label, PermMedia, Room } from "@material-ui/icons";
 import { selectUser } from "../../features/userSlice";
 import { useSelector } from "react-redux";
@@ -40,21 +39,21 @@ function Share() {
       window.location.reload();
     } catch (err) {}
   };
+
   return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <Link to={`profile/${user.username}`}>
-            <img
-              className="shareProfileImg"
-              src={
-                user.profilePicture
-                  ? PF + user.profilePicture
-                  : PF + "/noAvatar.webp"
-              }
-              alt=""
-            />
-          </Link>
+          <img
+            className="shareProfileImg"
+            src={
+              user.profilePicture
+                ? PF + user.profilePicture
+                : PF + "/noAvatar.webp"
+            }
+            alt=""
+          />
+
           <input
             className="shareInput"
             type="text"

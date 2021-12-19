@@ -3,9 +3,14 @@ import "./Rightbar.css";
 import Online from "../online/Online";
 import { Users } from "../../data";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { selectUser } from "../../features/userSlice";
+import { useSelector } from "react-redux";
+import { Add } from "@material-ui/icons";
 function Rightbar({ user }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
+  const currentUser = useSelector(selectUser);
 
   //Function for fetching friends data
   useEffect(() => {
@@ -43,10 +48,13 @@ function Rightbar({ user }) {
 
   //Component for profile page
   const ProfileRightbar = () => {
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
     return (
       <>
+        {user.username !== currentUser.username && (
+          <button className="rightbarFollowButton">
+            Follow <Add />
+          </button>
+        )}
         <h4 className="rightbarTitle">User Information</h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
@@ -71,18 +79,23 @@ function Rightbar({ user }) {
         <h4 className="rightbarTitle">User Friends</h4>
         <div className="rightbarFollowings">
           {friends.map((friend) => (
-            <div className="rightbarFollowing">
-              <img
-                className="rightbarFollowingimg"
-                src={
-                  friend.profilePicture
-                    ? PF + friend.profilePicture
-                    : PF + "/noAvatar.webp"
-                }
-                alt=""
-              />
-              <span className="rightbarFollowingName">{friend.username}</span>
-            </div>
+            <Link
+              to={"/profile/" + friend.username}
+              style={{ textDecoration: "none" }}
+            >
+              <div className="rightbarFollowing">
+                <img
+                  className="rightbarFollowingimg"
+                  src={
+                    friend.profilePicture
+                      ? PF + friend.profilePicture
+                      : PF + "/noAvatar.webp"
+                  }
+                  alt=""
+                />
+                <span className="rightbarFollowingName">{friend.username}</span>
+              </div>
+            </Link>
           ))}
         </div>
       </>

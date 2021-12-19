@@ -32,7 +32,7 @@ function App() {
           {user ? <Redirect to="/" /> : <Register />}
         </Route>
         <Route path="/profile/:username">
-          <Profile />
+          {user ? <Profile to="/" /> : <Register />}
         </Route>
       </Switch>
     </Router>

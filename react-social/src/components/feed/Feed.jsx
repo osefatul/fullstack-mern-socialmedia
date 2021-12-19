@@ -29,7 +29,8 @@ function Feed({ username }) {
   return (
     <div className="feed">
       <div className="feedWrapper">
-        <Share />
+        {/* Lets hide this share component on other people profiles.  */}
+        {username === user.username && <Share />}
         {posts.map((post) => (
           <Post key={post._id} post={post} />
         ))}
