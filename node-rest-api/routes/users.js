@@ -30,7 +30,7 @@ router.put("/:id", async function (req, res) {
 //DELETE USER
 router.delete("/:id", async (req, res) => {
   if (req.body.userId === req.params.id || req.body.isAdmin) {
-    // body userId and params.id are equla means they are same user
+    // body userId and params.id are equals means they are same user
     try {
       const user = await User.findByIdAndDelete(req.params.id);
       res.status(200).json("Your Account has been deleted");

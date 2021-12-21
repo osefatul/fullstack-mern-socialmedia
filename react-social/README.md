@@ -79,9 +79,16 @@ Lets implement step by step the react side of the app.
 - Added path for images in to the api/index file.
 - In the Share component when a file is chosen in the input by a user, Then we send that file using a formData ( provides a way to easily construct a set of key/value pairs representing form fields and their values, which can then be easily sent using the XMLHttpRequest.)
 
-#### Adding Follow button in profile page.
+#### Adding Follow button in the profile page- Rightbar component.
 
 - if the user which you visit their profile is not the current logged in user profile then there must be a follow button:
   {user.username !== currentUser.username && (
   <button className="rightbarFollowButton">Follow</button>
   )}
+
+- Add isFollowing state variable for followed and unfollowed reducers.
+- Add follow and unfollow reducers which are functions that deploy adding and removing followings in/from the current user followings list.
+- Add fetchingReset reducer where it will reset the isFetching state back to the initial state.
+- In the Rightbar component, to use realtime current user data I am fetching current user data directly from the DB (MongoDB) as the localstorage data is not updated in real time. It is not a good scenario to do that I did it for educational purpose. We should use the redux store not the DB when changing data or variable in the react.
+- In the Rightbar component I have used two main functions - one is to fetch current user (the one who logged In) data and other is to fetch the friend (followings list)
+- useEffect will be run based on the change of the user (whose profile we are visiting), isFollowing because we want to update the label of the Follow button and isFetchin to avoid the toggling between "follow" and "unfollow" label during the execution of the button code code.
