@@ -74,8 +74,8 @@ function Rightbar({ user }) {
         await axios.put(`/users/${user._id}/follow`, {
           userId: currentUser._id,
         });
-        dispatch(follow(user._id));
-        dispatch(followed());
+        dispatch(follow(user._id)); //add the id into the followings list
+        dispatch(followed()); //marked as followed.
       }
 
       //Whenever we click on the follow button there is toggling between follow and unfollow of the button label until the data is fully fetched and it is stable.

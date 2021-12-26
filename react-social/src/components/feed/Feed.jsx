@@ -30,7 +30,7 @@ function Feed({ username }) {
     <div className="feed">
       <div className="feedWrapper">
         {/* Lets hide this share component on other people profiles.  */}
-        {username === user.username && <Share />}
+        {(!username || username === user.username) && <Share />}
         {posts.map((post) => (
           <Post key={post._id} post={post} />
         ))}

@@ -92,3 +92,9 @@ Lets implement step by step the react side of the app.
 - In the Rightbar component, to use realtime current user data I am fetching current user data directly from the DB (MongoDB) as the localstorage data is not updated in real time. It is not a good scenario to do that I did it for educational purpose. We should use the redux store not the DB when changing data or variable in the react.
 - In the Rightbar component I have used two main functions - one is to fetch current user (the one who logged In) data and other is to fetch the friend (followings list)
 - useEffect will be run based on the change of the user (whose profile we are visiting), isFollowing because we want to update the label of the Follow button and isFetchin to avoid the toggling between "follow" and "unfollow" label during the execution of the button code code.
+
+#### Messenger/Chat App page
+
+- This is the extended version of the App where we introduced how would make a realtime chat application where users/followers can talk to each other.
+- First we added a messnenger page and then we went on to creat a conversation component that will be inserted into messenger in order to find and search for friends.
+-
