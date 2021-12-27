@@ -19,18 +19,27 @@ function Messenger() {
             <Conversation />
             <Conversation />
             <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
           </div>
         </div>
         <div className="chatBox">
           <div className="chatBoxWrapper">
             <div className="chatBoxTop">
               <Message />
+              <Message own={true} />
+              <Message />
+              <Message />
+              <Message />
+              <Message />
+              <Message />
+              <Message />
             </div>
-            <div className="chatBoxBottom"></div>
+            <div className="chatBoxBottom">
+              <textarea
+                className="chatMessageInput"
+                placeholder="Write something..."
+              ></textarea>
+              <button className="chatSubmitButton">Send</button>
+            </div>
           </div>
         </div>
         <div className="chatOnline">

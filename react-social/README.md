@@ -97,4 +97,4 @@ Lets implement step by step the react side of the app.
 
 - This is the extended version of the App where we introduced how would make a realtime chat application where users/followers can talk to each other.
 - First we added a messnenger page and then we went on to creat a conversation component that will be inserted into messenger in order to find and search for friends.
--
+- Another component in the middle for chat as we called it Message component. in the Message component we passed "own" which will indicated if the message was sent by us it will show in the right side of the component with different background color.
