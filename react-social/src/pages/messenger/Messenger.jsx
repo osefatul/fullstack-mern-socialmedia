@@ -2,6 +2,7 @@ import React from "react";
 import Topbar from "../../components/topbar/Topbar";
 import Conversation from "../../components/conversation/Conversation";
 import Message from "../../components/message/Message";
+import ChatOnline from "../../components/chatOnline/ChatOnline";
 import "./messenger.css";
 function Messenger() {
   return (
@@ -28,7 +29,7 @@ function Messenger() {
               <Message own={true} />
               <Message />
               <Message />
-              <Message />
+              <Message own={true} />
               <Message />
               <Message />
               <Message />
@@ -43,7 +44,12 @@ function Messenger() {
           </div>
         </div>
         <div className="chatOnline">
-          <div className="chatOnlineWrapper">online</div>
+          <div className="chatOnlineWrapper">
+            <ChatOnline />
+            <ChatOnline />
+            <ChatOnline />
+            <ChatOnline />
+          </div>
         </div>
       </div>
     </>
