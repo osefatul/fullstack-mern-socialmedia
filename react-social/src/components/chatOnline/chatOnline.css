@@ -26,6 +26,6 @@
   border-radius:50%;
   background-color: limegreen;
   position: absolute;
-  top: 2px;
-  right: 2px;
+  top: 0;
+  right:0
 }

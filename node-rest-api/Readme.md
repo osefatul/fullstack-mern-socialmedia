@@ -16,4 +16,4 @@
 #### Conversation and Message Models
 
 - We introduced user and post model in the first place and we then went on to develop the front end side using react.
-- At the end, when we developed a messaging page where we can chat with our friends and followers on the front end side- We then intorudced and built Conversation and Message models where their schema is defined.
+- At the end, when we developed a messaging page where we can chat with our friends and followers on the front end side, then we intorudced and built Conversation and Message models where their schema is defined.

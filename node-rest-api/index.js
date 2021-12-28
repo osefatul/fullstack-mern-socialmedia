@@ -5,9 +5,12 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const morgan = require("morgan");
 const helmet = require("helmet");
+
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
+const converRoute = require("./routes/conversations");
+const messageRoute = require("./routes/messages");
 const path = require("path");
 
 dotenv.config();
@@ -65,7 +68,8 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/users", userRoute);
 app.use("/api/auths", authRoute);
 app.use("/api/posts", postRoute);
-
+app.use("/api/conversations", converRoute);
+app.use("/api/messages", messageRoute);
 // commencing server
 app.listen(8000, () => {
   console.log("backend server is running");
