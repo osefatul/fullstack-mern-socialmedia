@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Topbar from "../../components/topbar/Topbar";
 import Conversation from "../../components/conversation/Conversation";
 import Message from "../../components/message/Message";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
 import "./messenger.css";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
+import axios from "axios";
 function Messenger() {
+  const [conversation, setConversation] = useState([]);
+  const user = useSelector(selectUser);
+
+  useEffect(() => {
+    const getConversation = async () => {
+      try {
+        const res = await axios.get("/conversations/" + user._id);
+        setConversation(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getConversation();
+  }, [user]);
   return (
     <>
       <Topbar />
@@ -16,10 +34,9 @@ function Messenger() {
               placeholder="Search for friends"
               className="chatMenuInput"
             />
-            <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
+            {conversation.map((conversation) => (
+              <Conversation conversation={conversation} currentUser={user} />
+            ))}
           </div>
         </div>
         <div className="chatBox">

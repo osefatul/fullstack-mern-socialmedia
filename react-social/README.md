@@ -102,3 +102,5 @@ Lets implement step by step the react side of the app.
 #### Conversation and Messages
 
 - Once we are done with front end messaging page we then created two new models in the API directory along with user and post and we called them: Conversation and Message.
+
+- We are fetching data of a user from the user id using useSelector.
