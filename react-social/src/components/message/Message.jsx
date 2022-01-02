@@ -1,7 +1,8 @@
 import React from "react";
 import "./message.css";
+import { format } from "timeago.js";
 
-function Message({ own }) {
+function Message({ own, message }) {
   return (
     <div className={own ? "message own" : "message"}>
       <div className="messageTop">
@@ -10,14 +11,9 @@ function Message({ own }) {
           alt=""
           className="messageImg"
         />
-        <p className="messageText">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque sunt
-          inventore, voluptate recusandae harum tempore id odit? Facilis
-          repudiandae necessitatibus dignissimos perferendis recusandae
-          voluptatum, dolores porro. Laboriosam error sapiente ipsam.
-        </p>
+        <p className="messageText">{message?.text}</p>
       </div>
-      <div className="messageBottom"> 1 hour ago</div>
+      <div className="messageBottom">{format(message.createdAt)}</div>
     </div>
   );
 }

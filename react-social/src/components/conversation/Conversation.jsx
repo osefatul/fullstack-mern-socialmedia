@@ -21,6 +21,7 @@ function Conversation({ conversation, currentUser }) {
         const res = await axios("/users?userId=" + friendId);
         // console.log(res.data);
         setUser(res.data); // set it as user
+        // console.log(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -35,12 +36,13 @@ function Conversation({ conversation, currentUser }) {
         <div className="conversation">
           <img
             src={
-              user.prfilePicture ? user.profilePicture : PF + "/noAvatar.webp"
+              user.profilePicture
+                ? PF + user.profilePicture
+                : PF + "/noAvatar.webp"
             }
-            alt=""
             className="conversationImage"
           />
-          <span className="conversationName">{user.username}</span>
+          <span className="conversationName">{user?.username}</span>
         </div>
       ) : (
         <Ring />
