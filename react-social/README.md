@@ -97,10 +97,19 @@ Lets implement step by step the react side of the app.
 
 - This is the extended version of the App where we introduced how would make a realtime chat application where users/followers can talk to each other.
 - First we added a messnenger page and then we went on to creat a conversation component that will be inserted into messenger in order to find and search for friends.
-- Another component in the middle for chat as we called it Message component. in the Message component we passed "own" which will indicated if the message was sent by us it will show in the right side of the component with different background color.
+- Another component in the middle for chat as we called it Message component. In the Message component we passed a props "own" which will indicated if the message was sent by us it will show in the right side of the component with different background color.
+- for conversation component we passed props "conversation" and "currentUser". conversation props is used for where we will make events to get all conversations that the user have had or if not they can create a new conversation.
+
+- Four Basic states have been used.
+  - conversation: when we fetch user conversation, then this state will set the users conversations. and pass them over to conversation component.
+  - currentChat: Once we click on any conversation then this will state will get all the data from that conversation and will let us to open the chat Window.
+  - messages: In the currentChat the conversation id is saved. This state is used to get all messages of the conversation that is already been clicked on to be shown in the open chat window and the id will be passed from the currentChat state.
+  - newMessage: This is the new message we want to send over to next person in the conversation. the state will be changed based on the textArea input value.
 
 #### Conversation and Messages
 
 - Once we are done with front end messaging page we then created two new models in the API directory along with user and post and we called them: Conversation and Message.
 
-- We are fetching data of a user from the user id using useSelector.
+- In the conversation component we basically try to do find the users friend id (iterate over the ids in the conversations data base array).
+- Get the users and show their profile picture and user name.
+- In the message component we show the messages

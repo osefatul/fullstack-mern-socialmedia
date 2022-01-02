@@ -42,8 +42,15 @@ function Messenger() {
     getMessages();
   }, [currentChat]);
 
+  //This is used for
+  useEffect(() => {
+    return scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   const handleMessageSubmit = async (e) => {
     e.preventDefault();
+
+    //the format is the same as the message model and it should be so we can add this message in to the old conversation.
     const message = {
       sender: user?._id, //this the user who is sending
       text: newMessage, //the new text you are writting to send
@@ -51,17 +58,15 @@ function Messenger() {
     };
 
     try {
+      //message will be posted in to message database.
       const res = await axios.post("/messages", message);
-      setMessages([...messages, res.data]);
+      setMessages([...messages, res.data]); // we are adding it to the current Messages state data so we can show it in the chat window.
       setNewMessage(""); //once text is sent empty the input
     } catch (e) {
       console.log(e);
     }
   };
 
-  useEffect(() => {
-    return scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
   // console.log(messages);
   // console.log(currentChat);
 
