@@ -7,16 +7,18 @@ import "./messenger.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import axios from "axios";
+import { io } from "socket.io-client";
 function Messenger() {
   const user = useSelector(selectUser); //current logged in user
   const scrollRef = useRef(); //This will scroll down the current chat window to the last mesage automatically
+  const [socket, setSocket] = useState(null);
 
   const [conversations, setConversations] = useState([]); //Current Users conversations, if he has
   const [currentChat, setCurrentChat] = useState(null); //This the Chat window. If we have conversation it will be opened based on conversationId if not it will create new.
   const [messages, setMessages] = useState([]); //These are the chat messages that will be shown in the chat window.
   const [newMessage, setNewMessage] = useState(""); //new message
 
-  //This is for fetching conversations that the current logged in user have with other users
+  // This is for fetching conversations that the current logged in user have with other users----------------------------------------
   useEffect(() => {
     const getConversation = async () => {
       try {
@@ -28,8 +30,7 @@ function Messenger() {
     };
     getConversation();
   }, [user]);
-
-  //This is for fetching messages that user has with in the conversation
+  // This is for fetching messages that user has with in the conversation----------------------------------------------------
   useEffect(() => {
     const getMessages = async () => {
       try {
@@ -42,10 +43,18 @@ function Messenger() {
     getMessages();
   }, [currentChat]);
 
-  //This is used for
+  // This is used for scrolling the view to the last sent/received message---------------------------------------------------
   useEffect(() => {
     return scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  // Establish websocket connection -----------------------------------------------------------------------------------------
+  useEffect(() => {
+    setSocket(io("ws://localhost:8900"));
+  }, []);
+  // ----------------------------------------------------------------------------------------------------------
+
+  console.log(socket);
 
   const handleMessageSubmit = async (e) => {
     e.preventDefault();
@@ -66,9 +75,7 @@ function Messenger() {
       console.log(e);
     }
   };
-
-  // console.log(messages);
-  // console.log(currentChat);
+  // ----------------------------------------------------------------------------------------------------------
 
   return (
     <>

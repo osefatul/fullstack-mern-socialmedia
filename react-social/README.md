@@ -113,3 +113,17 @@ Lets implement step by step the react side of the app.
 - In the conversation component we basically try to do find the users friend id (iterate over the ids in the conversations data base array).
 - Get the users and show their profile picture and user name.
 - In the message component we show the messages
+
+#### Socket.IO
+
+##### Socket Server
+
+- Send Event To Client: io
+  - To send every client: io.emit
+  - TO send one client: io.to(sockerID).emit
+- Take event from Client: socket.on
+
+##### Socket Client
+
+- Send Event To Server: socket.emit
+- Take Event from Server: socket.on
