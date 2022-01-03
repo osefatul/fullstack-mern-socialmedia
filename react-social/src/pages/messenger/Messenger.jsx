@@ -11,7 +11,7 @@ import { io } from "socket.io-client";
 function Messenger() {
   const user = useSelector(selectUser); //current logged in user
   const scrollRef = useRef(); //This will scroll down the current chat window to the last mesage automatically
-  const [socket, setSocket] = useState(null);
+  const socket = useRef(io("ws://localhost:8900"));
 
   const [conversations, setConversations] = useState([]); //Current Users conversations, if he has
   const [currentChat, setCurrentChat] = useState(null); //This the Chat window. If we have conversation it will be opened based on conversationId if not it will create new.
@@ -30,7 +30,7 @@ function Messenger() {
     };
     getConversation();
   }, [user]);
-  // This is for fetching messages that user has with in the conversation----------------------------------------------------
+  // This is for fetching messages that user has within the conversation----------------------------------------------------
   useEffect(() => {
     const getMessages = async () => {
       try {
@@ -50,11 +50,22 @@ function Messenger() {
 
   // Establish websocket connection -----------------------------------------------------------------------------------------
   useEffect(() => {
-    setSocket(io("ws://localhost:8900"));
-  }, []);
+    // socket.current = io("ws://localhost:8900");
+    socket.current.emit("addUser", user._id);
+    socket.current.on("getUsers", (users) => {
+      console.log(users);
+    });
+  }, [user]);
+
+  // useEffect(() => {
+  //   return socket?.on("welcom", (message) => {
+  //     console.log(message);
+  //   });
+  // }, [socket]);
+
   // ----------------------------------------------------------------------------------------------------------
 
-  console.log(socket);
+  // console.log(socket);
 
   const handleMessageSubmit = async (e) => {
     e.preventDefault();
