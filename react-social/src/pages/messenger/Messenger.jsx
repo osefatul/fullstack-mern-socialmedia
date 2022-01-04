@@ -8,15 +8,64 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import axios from "axios";
 import { io } from "socket.io-client";
+import { Ring } from "react-awesome-spinners";
+
 function Messenger() {
   const user = useSelector(selectUser); //current logged in user
   const scrollRef = useRef(); //This will scroll down the current chat window to the last mesage automatically
-  const socket = useRef(io("ws://localhost:8900"));
-
+  const socket = useRef();
   const [conversations, setConversations] = useState([]); //Current Users conversations, if he has
-  const [currentChat, setCurrentChat] = useState(null); //This the Chat window. If we have conversation it will be opened based on conversationId if not it will create new.
+
+  //This the Chat window. If we have conversation it will be opened based on conversationId if not it will create new.
+  const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]); //These are the chat messages that will be shown in the chat window.
-  const [newMessage, setNewMessage] = useState(""); //new message
+  const [newMessage, setNewMessage] = useState(""); //new message that you want to send
+  const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState();
+
+  //########################### SOCKET.IO LIBRARY USAGE #########################################################################################
+  useEffect(() => {
+    //Establish websocket connection
+    socket.current = io("ws://localhost:8900");
+
+    //RECEIVING MESSAGE
+    socket.current.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
+
+  //Once arrival messages has been recieved using socket, channel "getMessage", then we have to add the message in to the messages array in the conversation.
+  useEffect(() => {
+    //if arrivalMessage is recieved then find the sender in the members then add the arrival message into the Messages
+    arrivalMessage &&
+      currentChat?.members.includes(arrivalMessage.sender) &&
+      setMessages((prev) => [...prev, arrivalMessage]);
+  }, [arrivalMessage, currentChat]);
+
+  //Add those users that are get online in to the list.
+  useEffect(() => {
+    // socket.current = io("ws://localhost:8900");
+    socket.current.emit("addUser", user._id);
+    socket.current.on("getUsers", (users) => {
+      //1) First way: how to filter out the current online users
+      const currentOnlineUsers = users.map((user) => user.userId);
+      const filteredOnlineUsers = currentOnlineUsers.filter(
+        (u) => u !== user._id
+      );
+      console.log("FilteredOnlineUsers", filteredOnlineUsers);
+      setOnlineUsers(filteredOnlineUsers);
+
+      //2) Second way: how to filter out the current online users.. this one doesn't work sometimes especiall in firefox
+      // setOnlineUsers(
+      //   user.followings.filter((f) => users.some((u) => u.userId === f))
+      // );
+    });
+  }, [user]);
+  // ##################################### SOCKET.I0 -- END ####################################################################################################
 
   // This is for fetching conversations that the current logged in user have with other users----------------------------------------
   useEffect(() => {
@@ -30,6 +79,7 @@ function Messenger() {
     };
     getConversation();
   }, [user]);
+
   // This is for fetching messages that user has within the conversation----------------------------------------------------
   useEffect(() => {
     const getMessages = async () => {
@@ -48,25 +98,7 @@ function Messenger() {
     return scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Establish websocket connection -----------------------------------------------------------------------------------------
-  useEffect(() => {
-    // socket.current = io("ws://localhost:8900");
-    socket.current.emit("addUser", user._id);
-    socket.current.on("getUsers", (users) => {
-      console.log(users);
-    });
-  }, [user]);
-
-  // useEffect(() => {
-  //   return socket?.on("welcom", (message) => {
-  //     console.log(message);
-  //   });
-  // }, [socket]);
-
-  // ----------------------------------------------------------------------------------------------------------
-
-  // console.log(socket);
-
+  // When you click on sending messages
   const handleMessageSubmit = async (e) => {
     e.preventDefault();
 
@@ -76,6 +108,16 @@ function Messenger() {
       text: newMessage, //the new text you are writting to send
       conversationId: currentChat._id, //the conversation will be open based on chatId
     };
+
+    //USING SOCKET TO IDENTIFY RECEIVER AND SENDER AND THE MESSAGES TO SEND----------
+    const receiverId = currentChat.members.find(
+      (member) => member !== user._id
+    );
+    socket.current.emit("sendMessage", {
+      senderId: user._id,
+      receiverId,
+      text: newMessage,
+    });
 
     try {
       //message will be posted in to message database.
@@ -146,12 +188,17 @@ function Messenger() {
           </div>
         </div>
         <div className="chatOnline">
-          <div className="chatOnlineWrapper">
-            <ChatOnline />
-            <ChatOnline />
-            <ChatOnline />
-            <ChatOnline />
-          </div>
+          {onlineUsers ? (
+            <div className="chatOnlineWrapper">
+              <ChatOnline
+                onlineUsers={onlineUsers}
+                currentUser={user._id}
+                setCurrentChat={setCurrentChat}
+              />
+            </div>
+          ) : (
+            <Ring />
+          )}
         </div>
       </div>
     </>

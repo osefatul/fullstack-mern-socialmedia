@@ -4,20 +4,51 @@ const io = require("socket.io")(8900, {
   },
 });
 
-//In order to store user socket id, as socket id changed whenever we refresh a page.
+//In order to store online users socket id, as socket id changed whenever we refresh a page thats why we use "let variable"
 let users = [];
 
+//Add users who are online, into array.
 const addUser = (userId, socketId) => {
-  // If the same user is inside the array we are not going to add a user
+  // If user is inside the users array turn it false by exclaimation(NOT), once this is false the statement after && wont run.
+  // If user is not inside the array, return true and run the push statement as well.
   !users.some((user) => user.userId === userId) &&
     users.push({ userId, socketId });
 };
+
+//Remove a user whose socketId is not in the users array.
+const removeUser = (socketId) => {
+  users = users.filter((user) => user.socketId !== socketId);
+};
+
+//Find and Get user
+const getUser = (userId) => {
+  return users.find((user) => user.userId === userId);
+};
+
 io.on("connection", (socket) => {
+  //WHEN USER IS CONNECTED
   console.log("a user is connected");
   // io.emit("welcom", "hello this is Socket server");
   //take user id and socketId from user
   socket.on("addUser", (userId) => {
     addUser(userId, socket.id);
+    io.emit("getUsers", users);
+  });
+
+  //SEND AND RECEIVE MESSAGES
+  socket.on("sendMessage", ({ senderId, receiverId, text }) => {
+    const user = getUser(receiverId); //find the receiver from the users array
+    //use this socketId of this receiver and send this message.
+    io.to(user.socketId).emit("getMessage", {
+      senderId,
+      text,
+    });
+  });
+
+  //IF USER DISCONNECT (LOGOUT FROM THE MESSNGER) then we will remove user from the users array
+  socket.on("disconnect", () => {
+    console.log("a user disconnected!");
+    removeUser(socket.id);
     io.emit("getUsers", users);
   });
 });
