@@ -29,16 +29,17 @@ io.on("connection", (socket) => {
   //WHEN USER IS CONNECTED
   console.log("a user is connected");
   // io.emit("welcom", "hello this is Socket server");
-  //take user id and socketId from user
+  //take user id and socketId from CLIENT or user as he is visiting messenger page.
   socket.on("addUser", (userId) => {
     addUser(userId, socket.id);
     io.emit("getUsers", users);
   });
 
-  //SEND AND RECEIVE MESSAGES
+  //TAKE AN EVENT FROM THE SENDER CLIENT CONSISTS OF (SENDER, RECEIVER AND TEXT MESSAGE) WHEN HE CLICK ON SEND BUTTON.
+  //the moment we received sendMessage from sender we immediately send receive message to receiver client
   socket.on("sendMessage", ({ senderId, receiverId, text }) => {
     const user = getUser(receiverId); //find the receiver from the users array
-    //use this socketId of this receiver and send this message.
+    //use socketId of the receiver and send this message.
     io.to(user.socketId).emit("getMessage", {
       senderId,
       text,

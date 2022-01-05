@@ -28,7 +28,7 @@ function Messenger() {
     //Establish websocket connection
     socket.current = io("ws://localhost:8900");
 
-    //RECEIVING MESSAGE
+    //RECEIVING MESSAGE: Reveive message from server
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -56,7 +56,7 @@ function Messenger() {
       const filteredOnlineUsers = currentOnlineUsers.filter(
         (u) => u !== user._id
       );
-      console.log("FilteredOnlineUsers", filteredOnlineUsers);
+      // console.log("FilteredOnlineUsers", filteredOnlineUsers);
       setOnlineUsers(filteredOnlineUsers);
 
       //2) Second way: how to filter out the current online users.. this one doesn't work sometimes especiall in firefox
@@ -113,6 +113,8 @@ function Messenger() {
     const receiverId = currentChat.members.find(
       (member) => member !== user._id
     );
+
+    //Send text message to server where server will then send it over to the receiver.
     socket.current.emit("sendMessage", {
       senderId: user._id,
       receiverId,

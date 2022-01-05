@@ -114,16 +114,34 @@ Lets implement step by step the react side of the app.
 - Get the users and show their profile picture and user name.
 - In the message component we show the messages
 
-#### Socket.IO
+##### AS THE USER IS SENDING MESSAGE IN THE CONVERSATION THE RECEIVER DOESN'T RECIEVE IT IN A REAL TIME. WE WOULD REFRESH A PAGE AND THEN WOULD SEE THE MESSAGE. TO CHECK THE MESSAGE IN A REAL TIME AND ALSO TO SEE IN THE REAL TIME IF THE FOLLOWERS ARE ONLINE, WE ARE GOING TO USE SOCKET.IO LIBRARY.
+
+### SOCKET.IO
 
 ##### Socket Server
 
-- Send Event To Client: io
-  - To send every client: io.emit
-  - TO send one client: io.to(sockerID).emit
-- Take event from Client: socket.on
+- Send Event To Client: io.on - OR ESTABLISHING CONNECTION WITH THE CLIENTS
+  - To send to EVERY client: io.emit
+  - TO send to ONE client: io.to(sockerID).emit
+- Take event from A Client: socket.on
 
 ##### Socket Client
 
 - Send Event To Server: socket.emit
 - Take Event from Server: socket.on
+
+#### Using Socket.IO In Our App
+
+- First import socket library and initialize a port for it in order to connect it with front end (client side port).
+- Then, we establish our Socket and IO connection by selecting a port number.
+- So, whenever a user is connected to the APP, in our case say the messenger page, socket library will give the user a socketId using TCP/IP. socketId is changing everytime user is connecting and disconnecting.
+- We basically using Socket for three main reasons:
+
+  1- Get and Add Users (thier user id and socket id) who are online on the messenger app page, so we can show onine followers.
+
+  2- When a client is sending message to receiver - when we click on send button the send button will send all the information (sender, receiver and text) to socket server.
+
+  3- the moment we received sendMessage from sender we immediately send receive message to receiver client
+
+- Online Users have been set using getUsers socket.io
+- we sent our online users array over to ChatOnline component in order to render them.

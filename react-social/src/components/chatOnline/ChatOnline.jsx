@@ -8,6 +8,7 @@ function ChatOnline({ onlineUsers, currentUser, setCurrentChat }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
+    //get my friends who I am following
     const getFriends = async () => {
       const res = await axios.get("/users/friends/" + currentUser);
       setFriends(res.data);
