@@ -3,6 +3,8 @@ import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
+import axios from "axios";
+import { io } from "socket.io-client";
 import "./home.css";
 
 function Home() {

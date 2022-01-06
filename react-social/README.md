@@ -1,4 +1,6 @@
-# React/Front-End of the Social_Platform
+# PART 1)
+
+## React/Front-End of the Social_Platform
 
 Lets implement step by step the react side of the app.
 
@@ -93,7 +95,9 @@ Lets implement step by step the react side of the app.
 - In the Rightbar component I have used two main functions - one is to fetch current user (the one who logged In) data and other is to fetch the friend (followings list)
 - useEffect will be run based on the change of the user (whose profile we are visiting), isFollowing because we want to update the label of the Follow button and isFetchin to avoid the toggling between "follow" and "unfollow" label during the execution of the button code code.
 
-#### Messenger/Chat App page
+# PART 2)
+
+## Messenger/Chat App page
 
 - This is the extended version of the App where we introduced how would make a realtime chat application where users/followers can talk to each other.
 - First we added a messnenger page and then we went on to creat a conversation component that will be inserted into messenger in order to find and search for friends.
@@ -106,7 +110,7 @@ Lets implement step by step the react side of the app.
   - messages: In the currentChat the conversation id is saved. This state is used to get all messages of the conversation that is already been clicked on to be shown in the open chat window and the id will be passed from the currentChat state.
   - newMessage: This is the new message we want to send over to next person in the conversation. the state will be changed based on the textArea input value.
 
-#### Conversation and Messages
+### Conversation and Messages
 
 - Once we are done with front end messaging page we then created two new models in the API directory along with user and post and we called them: Conversation and Message.
 
@@ -116,7 +120,7 @@ Lets implement step by step the react side of the app.
 
 ##### AS THE USER IS SENDING MESSAGE IN THE CONVERSATION THE RECEIVER DOESN'T RECIEVE IT IN A REAL TIME. WE WOULD REFRESH A PAGE AND THEN WOULD SEE THE MESSAGE. TO CHECK THE MESSAGE IN A REAL TIME AND ALSO TO SEE IN THE REAL TIME IF THE FOLLOWERS ARE ONLINE, WE ARE GOING TO USE SOCKET.IO LIBRARY.
 
-### SOCKET.IO
+## SOCKET.IO
 
 ##### Socket Server
 
@@ -145,3 +149,11 @@ Lets implement step by step the react side of the app.
 
 - Online Users have been set using getUsers socket.io
 - we sent our online users array over to ChatOnline component in order to render them.
+
+# PART 3)
+
+## REAL TIME Notifications
+
+- As we put our notifications icons on the top bar- then we will use socket.io in the App.js thats where all the pages from.
+- We moved our socked connection from client side moved from messenger to APP and passed socket to messenger from there.
+- Now user is connected to the socket when they open an App not like user would be connected when users visited messenger page only.

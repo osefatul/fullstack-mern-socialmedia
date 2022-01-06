@@ -1,5 +1,5 @@
-import React from "react";
 import * as ReactDOM from "react-dom";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -14,10 +14,17 @@ import Register from "./pages/register/Register";
 import Messenger from "./pages/messenger/Messenger";
 import { selectUser } from "./features/userSlice";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import axios from "axios";
+import { io } from "socket.io-client";
 
 function App() {
   const user = useSelector(selectUser);
+  const socket = useRef();
+
+  useEffect(() => {
+    //Establish websocket connection
+    socket.current = io("ws://localhost:8900");
+  }, []);
 
   useEffect(() => {
     localStorage.getItem("userInfo");
@@ -33,7 +40,7 @@ function App() {
           {user ? <Redirect to="/" /> : <Register />}
         </Route>
         <Route path="/messenger">
-          {!user ? <Redirect to="/" /> : <Messenger />}
+          {!user ? <Redirect to="/" /> : <Messenger socket={socket} />}
         </Route>
         <Route path="/profile/:username">
           {user ? <Profile to="/" /> : <Register />}
