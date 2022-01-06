@@ -10,10 +10,10 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import { Ring } from "react-awesome-spinners";
 
-function Messenger({ socket }) {
+function Messenger() {
   const user = useSelector(selectUser); //current logged in user
   const scrollRef = useRef(); //This will scroll down the current chat window to the last mesage automatically
-  // const socket = useRef();
+  const socket = useRef();
   const [conversations, setConversations] = useState([]); //Current Users conversations, if he has
 
   //This the Chat window. If we have conversation it will be opened based on conversationId if not it will create new.
@@ -26,7 +26,7 @@ function Messenger({ socket }) {
   //########################### SOCKET.IO LIBRARY USAGE #########################################################################################
   useEffect(() => {
     //Establish websocket connection
-    // socket.current = io("ws://localhost:8900");
+    socket.current = io("ws://localhost:8900");
 
     //RECEIVING MESSAGE: Reveive message from server
     socket.current.on("getMessage", (data) => {

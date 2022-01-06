@@ -6,6 +6,7 @@ const initialState = {
   isFetching: false,
   error: false,
   isFollowing: false,
+  socket: null,
 };
 
 export const userSlice = createSlice({
@@ -52,6 +53,9 @@ export const userSlice = createSlice({
     unfollowed: (state, action) => {
       state.isFollowing = false;
     },
+    setSocket: (state, action) => {
+      state.socket = action.payload;
+    },
   },
 });
 
@@ -65,6 +69,7 @@ export const {
   unfollow,
   followed,
   unfollowed,
+  setSocket,
 } = userSlice.actions;
 
 // The function below is called a selector and allows us to select a value from the state to send/export the state value
@@ -72,5 +77,6 @@ export const selectUser = (state) => state.user.user;
 export const selectError = (state) => state.user.error;
 export const selectIsFetching = (state) => state.user.isFetching;
 export const selectIsFollowing = (state) => state.user.isFollowing;
+export const selectSocket = (state) => state.user.socket;
 
 export default userSlice.reducer;

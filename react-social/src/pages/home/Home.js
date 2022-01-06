@@ -7,7 +7,7 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import "./home.css";
 
-function Home() {
+function Home({}) {
   return (
     <div>
       <Topbar />
